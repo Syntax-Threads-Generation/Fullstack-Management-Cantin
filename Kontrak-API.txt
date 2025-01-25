@@ -1,0 +1,736 @@
+Kontrak API: 
+1.  Users 
+	BaseUrl: "/api/auth"
+		- Create user:
+			method: "POST"
+			path:/register
+			request_body:{
+				"email": "string",
+        			"password": "string",
+        			"name": "string",
+       			 	"role": "SUPER_ADMIN/ADMIN"
+      			}
+			response: {
+				  "id_user": "long",
+				  "email": "string",
+				  "name": "string",
+				  "role": "SUPER_ADMIN/ADMIN"
+			}
+
+		- Get all users:
+			method: "GET"
+			path:/users
+			response: [
+        				{
+          				    "id_user": "long",
+					    "email": "string",
+					    "name": "string",
+					    "role": "SUPER_ADMIN/ADMIN"
+        				}
+      			]
+      		- Get user by id:
+      			method: "GET"
+      			path:"/user/:id_user"
+      			response: {
+        				"id_user": "long",
+        				"email": "string",
+        				"name": "string",
+        				"role": "SUPER_ADMIN/ADMIN"
+      			}
+      		- Update user by id:
+      			method: "PUT"
+      			path:"/user/update/:id_user"
+      			request_body: {
+				"email": "string",
+				"password": "string",
+				"name": "string",
+				"role": "SUPER_ADMIN/ADMIN"
+			 }
+			response: {
+				"id_user": "long",
+				"email": "string",
+				"name": "string",
+				"role": "SUPER_ADMIN/ADMIN"
+			}
+		- Delete user by id:
+			method: "DELETE"
+			path: "/delete/:id_user"
+		- Login User:
+			method: "POST",
+			path:"/login",
+			request_body:{
+					"email": "string",
+					"password": "string"
+			}
+			response: {
+					"token": "code",
+					"user": {
+						      "id_user":"long",
+						      "email"  :"string",
+						      "name"   :"string",
+						      "role"   :"SUPER_ADMIN"
+					}
+			}
+2. Products
+	BaseUrl": "/api/products",
+		- Create Product
+		      method: "POST",
+		      path: "/create",
+		      request_body: {
+		        "id_user": long,
+		        "product_name": "string",
+		        "product_price": "long",
+		        "categories": "FOODS/DRINKS"
+		      },
+		      response: {
+		        "id_product": "long",
+		        "user"   : {
+				 	"id_user": "long",
+					"email": "string",
+					"name": "string",
+					"role": "SUPER_ADMIN/ADMIN"
+			    },
+		        "product_name": "string",
+		        "product_price": "long",
+		        "categories": "FOODS/DRINKS"
+		      }
+	    	- Get all products
+		      method: "GET",
+		      path: "",
+		      response: [
+			{
+			        "id_product": "long",
+			        "user"   : {
+				 	"id_user": "long",
+					"email": "string",
+					"name": "string",
+					"role": "SUPER_ADMIN/ADMIN"
+			 	},
+			        "product_name": "string",
+			        "product_price": "long",
+			        "categories": "FOODS/DRINKS"
+			}
+		      ]
+	    
+	    	- Get product by id
+		      method: "GET",
+		      path: "/:id_product",
+		      response: {
+			        "id_product": "long",
+			        "user"   : {
+				 	"id_user": "long",
+					"email": "string",
+					"name": "string",
+					"role": "SUPER_ADMIN/ADMIN"
+			 	},
+			        "product_name": "string",
+			        "product_price": "long",
+			        "categories": "FOODS/DRINKS"
+		      }
+
+	    	- Get product by product_name
+		      method: "GET",
+		      path: "/search/product_name"
+		      response: [
+			{
+			        "id_product": "long",
+			        "user"   : {
+				 	"id_user": "long",
+					"email": "string",
+					"name": "string",
+					"role": "SUPER_ADMIN/ADMIN"
+			 	},
+			        "product_name": "string",
+			        "product_price": "long",
+			        "categories": "FOODS/DRINKS"
+			}
+		      ]
+
+	    	- Get product by categories
+		      method: "GET",
+		      path: "/filter/categories",
+		      response: [
+			{
+			        "id_product": "long",
+			        "user"   : {
+				 	"id_user": "long",
+					"email": "string",
+					"name": "string",
+					"role": "SUPER_ADMIN/ADMIN"
+			 	},
+			        "product_name": "string",
+			        "product_price": "long",
+			        "categories": "FOODS/DRINKS"
+			}
+		      ]
+
+		- Update product by id
+		      method: "PUT",
+		      path: "/update/:id_product",
+		      request_body: {
+		        "id_user": long,
+		        "product_name": "string",
+		        "product_price": "long",
+		        "categories": "FOODS/DRINKS"
+		      },
+		      response: {
+			        "id_product": "long",
+			        "user"   : {
+				 	"id_user": "long",
+					"email": "string",
+					"name": "string",
+					"role": "SUPER_ADMIN/ADMIN"
+			 	},
+			        "product_name": "string",
+			        "product_price": "long",
+			        "categories": "FOODS/DRINKS"
+		      }
+
+		 - Delete product by id
+		      method: "DELETE",
+		      path: "/delete/:id_product"
+
+4. Product Sales
+	BaseUrl: "/api/sales/products",
+	  	- Create Product Sales
+		      method: "POST",
+		      path: "/create",
+		      request_body: {
+		        "id_user": "long",
+		        "id_product": "long",
+		        "total_product": "long",
+		        "leftover_product_sales": "long",
+		        "date_product_sales": "date"
+		      },
+		      response: {
+		        "id_product_sales": "long",
+		        "user": {
+					"id_user": "long",
+					"email": "string",
+					"name": "string",
+					"role": "SUPER_ADMIN/ADMIN"
+			    },
+		        "product": {
+					"id_product": "long",
+					"user": {
+						"id_user": "long",
+						"email": "string",
+						"name": "string",
+						"role": "SUPER_ADMIN/ADMIN"
+					},
+					"product_name": "string",
+					"product_price": "long",
+					"categories": "FOODS/DRINKS"
+			    },
+		        "total_product": "long",
+		        "leftover_product_sales": "long",
+		        "total_product_sales_price": "long",
+		        "date_product_sales": "date",
+		        "period": "month"
+		      }
+	    	- Get All Product Sales
+		      method: "GET",
+		      path: "/",
+		      response: [{
+		        "id_product_sales": "long",
+		        "user": {
+					"id_user": "long",
+					"email": "string",
+					"name": "string",
+					"role": "SUPER_ADMIN/ADMIN"
+			    },
+		        "product": {
+					"id_product": "long",
+					"user": {
+						"id_user": "long",
+						"email": "string",
+						"name": "string",
+						"role": "SUPER_ADMIN/ADMIN"
+					},
+					"product_name": "string",
+					"product_price": "long",
+					"categories": "FOODS/DRINKS"
+			    },
+		        "total_product": "long",
+		        "leftover_product_sales": "long",
+		        "total_product_sales_price": "long",
+		        "date_product_sales": "date",
+		        "period": "month"
+		      }]
+	    	- Get Product Sales By Date
+		      method: "GET",
+		      path: "/date/:date_product_sales",
+		      response: {
+		        "id_product_sales": "long",
+		        "user": {
+					"id_user": "long",
+					"email": "string",
+					"name": "string",
+					"role": "SUPER_ADMIN/ADMIN"
+			    },
+		        "product": {
+					"id_product": "long",
+					"user": {
+						"id_user": "long",
+						"email": "string",
+						"name": "string",
+						"role": "SUPER_ADMIN/ADMIN"
+					},
+					"product_name": "string",
+					"product_price": "long",
+					"categories": "FOODS/DRINKS"
+			    },
+		        "total_product": "long",
+		        "leftover_product_sales": "long",
+		        "total_product_sales_price": "long",
+		        "date_product_sales": "date",
+		        "period": "month"
+		      }
+		 - Get Product Sales By Month
+		      method: "GET",
+		      path: "/month/:period",
+		      response: [{
+		        "id_product_sales": "long",
+		        "user": {
+					"id_user": "long",
+					"email": "string",
+					"name": "string",
+					"role": "SUPER_ADMIN/ADMIN"
+			    },
+		        "product": {
+					"id_product": "long",
+					"user": {
+						"id_user": "long",
+						"email": "string",
+						"name": "string",
+						"role": "SUPER_ADMIN/ADMIN"
+					},
+					"product_name": "string",
+					"product_price": "long",
+					"categories": "FOODS/DRINKS"
+			    },
+		        "total_product": "long",
+		        "leftover_product_sales": "long",
+		        "total_product_sales_price": "long",
+		        "date_product_sales": "date",
+		        "period": "month"
+		      }]
+		      
+		- Get Product Sales By Categories
+		      method: "GET",
+		      path: "/categories/:categories",
+		      response: [{
+		        "id_product_sales": "long",
+		        "user": {
+					"id_user": "long",
+					"email": "string",
+					"name": "string",
+					"role": "SUPER_ADMIN/ADMIN"
+			    },
+		        "product": {
+					"id_product": "long",
+					"user": {
+						"id_user": "long",
+						"email": "string",
+						"name": "string",
+						"role": "SUPER_ADMIN/ADMIN"
+					},
+					"product_name": "string",
+					"product_price": "long",
+					"categories": "FOODS/DRINKS"
+			    },
+		        "total_product": "long",
+		        "leftover_product_sales": "long",
+		        "total_product_sales_price": "long",
+		        "date_product_sales": "date",
+		        "period": "month"
+		      }]
+		
+	    	- Update Product Sales By Id
+		      method: "PUT",
+		      path: "/update/:id_sales",
+		      request_body: {
+		        "id_user": "long",
+		        "id_product": "long",
+		        "total_product": "long",
+		        "leftover_product_sales": "long",
+		        "date_product_sales": "date"
+		      },
+		      response: {
+		        "id_product_sales": "long",
+		        "user": {
+					"id_user": "long",
+					"email": "string",
+					"name": "string",
+					"role": "SUPER_ADMIN/ADMIN"
+			    },
+		        "product": {
+					"id_product": "long",
+					"user": {
+						"id_user": "long",
+						"email": "string",
+						"name": "string",
+						"role": "SUPER_ADMIN/ADMIN"
+					},
+					"product_name": "string",
+					"product_price": "long",
+					"categories": "FOODS/DRINKS"
+			    },
+		        "total_product": "long",
+		        "leftover_product_sales": "long",
+		        "total_product_sales_price": "long",
+		        "date_product_sales": "date",
+		        "period": "month"
+		      }
+	    
+		 - Delete Sales By Id
+		      method: "DELETE",
+		      path: "/delete/:id_product_sales",
+
+6. Inventorys
+	BaseUrl: "/api/inventory",
+	   - Create inventory
+	      method: "POST",
+	      path: "/create",
+	      request_body: {
+	        "id_user": "long"
+		"inventory_name": "string",
+		"inventory_price_unit": "long",
+		"inventory_quantity": "long",
+		"inventory_discount": "long",
+		"inventory_price_discount": "long",
+		"inventory_total_price": "long",
+		"date_inventory_buy": "date",
+		"category": "FOODSTUFF/TOOL"		
+	      },
+	      response: {
+		"id_inventory": "long",
+		"name": "string",
+		"inventory_name": "string",
+		"inventory_price_unit": "long",
+		"inventory_quantity": "long",
+		"inventory_discount": "long",
+		"inventory_price_discount": "long",
+		"inventory_total_price": "long",
+		"date_inventory_buy": "date",
+		"period": "month",
+		"category": "FOODSTUFF/TOOL"
+	      }
+	   - Get All inventorys
+	      method: "GET",
+	      path: "/",
+	      response: [{
+		"id_inventory": "long",
+		"name": "string",
+		"inventory_name": "string",
+		"inventory_price_unit": "long",
+		"inventory_quantity": "long",
+		"inventory_discount": "long",
+		"inventory_price_discount": "long",
+		"inventory_total_price": "long",
+		"date_inventory_buy": "date",
+		"period": "month",
+		"category": "FOODSTUFF/TOOL"
+	      }]
+	   - Get inventory By Id
+	      method: "GET",
+	      path: "/:id_inventory",
+	      response: {
+		"id_inventory": "long",
+		"name": "string",
+		"inventory_name": "string",
+		"inventory_price_unit": "long",
+		"inventory_quantity": "long",
+		"inventory_discount": "long",
+		"inventory_price_discount": "long",
+		"inventory_total_price": "long",
+		"date_inventory_buy": "date",
+		"period": "month",
+		"category": "FOODSTUFF/TOOL"
+	      }
+	   - Get inventory By Date Buy
+	      method: "GET",
+	      path: "/date/:date_inventory_buy",
+	      response: [{
+		"id_inventory": "long",
+		"name": "string",
+		"inventory_name": "string",
+		"inventory_price_unit": "long",
+		"inventory_quantity": "long",
+		"inventory_discount": "long",
+		"inventory_price_discount": "long",
+		"inventory_total_price": "long",
+		"date_inventory_buy": "date",
+		"period": "month",
+		"category": "FOODSTUFF/TOOL"
+	      }]
+	   - Get inventory By Month
+	      method: "GET",
+	      path: "/month/:period",
+	      response: [{
+		"id_inventory": "long",
+		"name": "string",
+		"inventory_name": "string",
+		"inventory_price_unit": "long",
+		"inventory_quantity": "long",
+		"inventory_discount": "long",
+		"inventory_price_discount": "long",
+		"inventory_total_price": "long",
+		"date_inventory_buy": "date",
+		"period": "month",
+		"category": "FOODSTUFF/TOOL"
+	      }]
+	   - Update inventory By Id
+	      method: "PUT",
+	      path: "/update/:id_inventory",
+	      request_body: {
+	        "id_user": "long"
+		"inventory_name": "string",
+		"inventory_price_unit": "long",
+		"inventory_quantity": "long",
+		"inventory_discount": "long",
+		"inventory_price_discount": "long",
+		"inventory_total_price": "long",
+		"date_inventory_buy": "date",
+		"category": "FOODSTUFF/TOOL"		
+	      },
+	      response: {
+		"id_inventory": "long",
+		"name": "string",
+		"inventory_name": "string",
+		"inventory_price_unit": "long",
+		"inventory_quantity": "long",
+		"inventory_discount": "long",
+		"inventory_price_discount": "long",
+		"inventory_total_price": "long",
+		"date_inventory_buy": "date",
+		"period": "month",
+		"category": "FOODSTUFF/TOOL"
+	      }
+	   - Delete inventory By Id
+	      method: "DELETE",
+	      path: "/delete/:id_inventory"
+
+
+7. Purchase
+	BaseUrl: "/api/purchases",
+	   - Get All Purchases
+	      method: "GET",
+	      path: "/",
+	      response: [
+		{
+		  "id_purchase": "long",
+		  "inventory":{
+		  	"id_inventory": "long",
+			"name": "string",
+			"inventory_name": "string",
+			"inventory_price_unit": "long",
+			"inventory_quantity": "long",
+			"inventory_discount": "long",
+			"inventory_price_discount": "long",
+			"inventory_total_price": "long",
+			"date_inventory_buy": "date",
+			"period": "month",
+			"category": "FOODSTUFF/TOOL"
+		  }
+		  "name": "string",
+		  "purchase_total_price": "long",
+		  "date_purchase": "date",
+		  "period": "month"
+		}
+	      ]
+	   - Get Purchase By Date
+	      method: "GET",
+	      path: "/date/:date_purchase",
+	      response: {
+		  "id_purchase": "long",
+		  "inventory":{
+		  	"id_inventory": "long",
+			"name": "string",
+			"inventory_name": "string",
+			"inventory_price_unit": "long",
+			"inventory_quantity": "long",
+			"inventory_discount": "long",
+			"inventory_price_discount": "long",
+			"inventory_total_price": "long",
+			"date_inventory_buy": "date",
+			"period": "month",
+			"category": "FOODSTUFF/TOOL"
+		  }
+		  "name": "string",
+		  "purchase_total_price": "long",
+		  "date_purchase": "date",
+		  "period": "month"
+		}
+	- Get Purchase By Month
+	      method: "GET",
+	      path: "/month/:period",
+	      response: {
+		  "id_purchase": "long",
+		  "inventory":{
+		  	"id_inventory": "long",
+			"name": "string",
+			"inventory_name": "string",
+			"inventory_price_unit": "long",
+			"inventory_quantity": "long",
+			"inventory_discount": "long",
+			"inventory_price_discount": "long",
+			"inventory_total_price": "long",
+			"date_inventory_buy": "date",
+			"period": "month",
+			"category": "FOODSTUFF/TOOL"
+		  },
+		  "name": "string",
+		  "purchase_total_price": "long",
+		  "date_purchase": "date",
+		  "period": "month"
+	     }
+8. Profits
+	BaseUrl: "/api/profits",
+	   - Get All Profits
+	      method: "GET",
+	      path: "/",
+	      response: [
+		{
+		  "id_profit": "long",
+		  "purchases":{
+			  "id_purchase": "long",
+			  "foodstuff":{
+			  	"id_foodstuff": "long",
+				"name": "string",
+				"foodstuff_name": "string",
+				"foodstuff_price_unit": "long",
+				"foodstuff_quantity": "long",
+				"foodstuff_discount": "long",
+				"foodstuff_price_discount": "long",
+				"foodstuff_total_price": "long",
+				"date_foodstuff_buy": "date",
+				"period": "month"
+			  },
+			  "tool":{
+				"id_tool": "long",
+				"name":"string",
+				"tool_name": "string",
+				"tool_price_unit": "long",
+				"tool_quantity": "long",
+				"tool_discount": "long",
+				"tool_price_discount": "long",
+				"tool_total_price": "long",
+				"date_tool_buy": "date",
+				"period":"month"
+			  },
+			  "name": "string",
+			  "purchase_total_price": "long",
+			  "date_purchase": "date",
+			  "period": "month"
+		  },
+		  "sales":{
+		  	"id_sales": "long",
+			"name": "String",
+			"food_name": "string",
+			"total_sales_foods": "long",
+			"leftover_food_sale": "long",
+			"total_sales_foods_price":"long",
+			"drink_name": "string",
+			"total_sales_drinks":"long",
+			"leftover_drink_sale":"long",
+			"total_sales_drinks_price":"long",
+			"total_sales_price": "long",
+			"date_sales": "date",
+			"period": "month"
+		  },
+		  "name": "string",
+		  "total_profits": "long",
+		  "total_loss": "long",
+		  "date_profit": "date",
+		  "period": "month"
+		}
+	      ]
+	   - Get Profit By Date
+	      method: "GET",
+	      path: "/date/:date_profit",
+	      response: {
+		  "id_profit": "long",
+		  "purchases":{
+			  "id_purchase": "long",
+			  "foodstuff":{
+			  	"id_foodstuff": "long",
+				"name": "string",
+				"foodstuff_name": "string",
+				"foodstuff_price_unit": "long",
+				"foodstuff_quantity": "long",
+				"foodstuff_discount": "long",
+				"foodstuff_price_discount": "long",
+				"foodstuff_total_price": "long",
+				"date_foodstuff_buy": "date",
+				"period": "month"
+			  },
+			  "tool":{
+				"id_tool": "long",
+				"name":"string",
+				"tool_name": "string",
+				"tool_price_unit": "long",
+				"tool_quantity": "long",
+				"tool_discount": "long",
+				"tool_price_discount": "long",
+				"tool_total_price": "long",
+				"date_tool_buy": "date",
+				"period":"month"
+			  },
+			  "name": "string",
+			  "purchase_total_price": "long",
+			  "date_purchase": "date",
+			  "period": "month"
+		  },
+		  "sales":{
+		  	"id_sales": "long",
+			"name": "String",
+			"food_name": "string",
+			"total_sales_foods": "long",
+			"leftover_food_sale": "long",
+			"total_sales_foods_price":"long",
+			"drink_name": "string",
+			"total_sales_drinks":"long",
+			"leftover_drink_sale":"long",
+			"total_sales_drinks_price":"long",
+			"total_sales_price": "long",
+			"date_sales": "date",
+			"period": "month"
+		  },
+		  "name": "string",
+		  "total_profits": "long",
+		  "total_loss": "long",
+		  "date_profit": "date",
+		  "period": "month"
+	}
+
+
+
+
+Rumus : 
+    1. Harga Total Setelah Diskon untuk Foodstuff:
+       foodstuff_total_price = (foodstuff_price_unit - foodstuff_price_discount) × foodstuff_quantity
+    2. Harga Total Setelah Diskon untuk Tool:
+       tool_total_price = (tool_price_unit - tool_price_discount) × tool_quantity
+    3. Total Harga Pembelian (purchase_total_price):
+        purchase_total_price = foodstuff_total_price + tool_total_price
+    4. Total Harga Penjualan Makanan (food):
+       total_sales_foods_price = total_sales_foods × food_price_unit
+       (dimana food_price_unit adalah harga per unit makanan yang dijual)
+    5. Total Harga Penjualan Minuman (drinks):
+       total_sales_drinks_price = total_sales_drinks × drink_price_unit
+       (dimana drink_price_unit adalah harga per unit minuman yang dijual)
+    6. Total Harga Penjualan (total_sales_price):
+       total_sales_price = total_sales_foods_price + total_sales_drinks_price
+    7. Total Profits
+       total_profits = total_sales_price - purchase_total_price
+    8. Total Loss
+    	- Kerugian Penjualan Makanan (food):
+    	  food_loss = leftover_food_sale × food_price
+    	- Kerugian Penjualan Minuman (drinks):
+	  drink_loss = leftover_drink_sale × drink_price
+	- Total Loss
+	  total_loss= food_loss + drink_loss
+
+
+
