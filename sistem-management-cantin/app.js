@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var authRouter = require('./routes/auth');
-// var productsRouter = require('./routes/products');
+var productsRouter = require('./routes/products');
 // var productSalesRouter = require('./routes/product-sales');
 // var inventoryRouter = require('./routes/inventory');
 // var purchasesRouter = require('./routes/purchases');
@@ -15,6 +15,10 @@ var swaggerDocument = require('./swagger');
 var {createTable} = require('./config/db');
 
 var app = express();
+const cors = require('cors');  
+
+// Gunakan CORS  
+app.use(cors());  
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 createTable();
 
 app.use('/api/auth',authRouter);
-// app.use('/api/products',productsRouter);
+app.use('/api/products',productsRouter);
 // app.use('/api/sales/products',productSalesRouter);
 // app.use('/api/inventory',inventoryRouter);
 // app.use('/api/purchases',purchasesRouter);
